@@ -8,6 +8,7 @@
 
 ## Zdroje
 - **Font** Roboto (Google Fonts, SIL Open Font License) - priložený lokálne vo formáte .woff2.
+- **Icon(Favicon)** favicon128.ico od Kiranshastry z https://www.flaticon.com/ 
 
 ## Použitie AI nástrojov
 AI nástroje (Gemini) boli použité na vysvetlenie koncepcií HTML/CSS/JS, a pomoc pri implementácii vybraných častí kódu a pri riešení problémov v prípadoch, keď som si s danou problematikou nevedel poradiť.
