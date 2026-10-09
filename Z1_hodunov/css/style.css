@@ -1,3 +1,37 @@
+:root {
+
+/*colors*/
+--primary_color: #0f172a;
+--secondary_color: #2563eb;
+--accent: #f59e0b;
+
+/*neutral colors*/
+--background: #f8fafc;
+--objects: #ffffff;
+--text: #1e293b;
+--text-muted: #64748b;
+--border: #e2e8f0;
+
+/*spacing*/
+--space4: 0.25rem;           
+--space8: 0.5rem;           
+--space16: 1rem;             
+--space24: 1.5rem;            
+--space32: 2rem;
+
+/*border-range*/
+--radius4: 0.25rem;          
+--radius8: 0.5rem;  
+--radius16: 1rem;      
+--radius-full: 9999px;
+
+
+--max-width: 1100px;
+
+}
+
+
+
 /* roboto-regular - cyrillic_latin_latin-ext_math_symbols */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -15,6 +49,22 @@
   src: url('../fonts/roboto-v51-cyrillic_latin_latin-ext_math_symbols-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space16);
 }
