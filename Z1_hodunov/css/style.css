@@ -3,7 +3,7 @@
 /*colors*/
 --primary_color: #0f172a;
 --secondary_color: #2563eb;
---accent: #f59e0b;
+--accent: #5f9cec;
 
 /*neutral colors*/
 --background: #f8fafc;
@@ -15,9 +15,11 @@
 /*spacing*/
 --space4: 0.25rem;           
 --space8: 0.5rem;           
---space16: 1rem;             
+--space16: 1rem;
+--space20: 1.25rem;             
 --space24: 1.5rem;            
 --space32: 2rem;
+--space48: 2.5rem;
 
 /*border-range*/
 --radius4: 0.25rem;          
@@ -61,10 +63,140 @@ body{
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--space16);
+}
+
+main {
+  padding: var(--space32) 0;
+  flex: 1;
+}
+
+/*header*/
+
+header{
+  background-color: var(--primary_color);
+  padding: var(--space16) 0;
+}
+
+nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--space24);
+}
+
+nav a {
+  color: var(--objects);
+  text-decoration: none;
+  font-weight: 700;
+  padding: var(--space8) var(--space16);
+  border-radius: var(--radius4);
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+nav a.active {
+  color: var(--accent);
+  background-color: var(--text);
+}
+
+/*index.html prop*/
+
+.index-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space48);
+}
+
+.me-image img {
+  width: 360px;
+  height: auto;
+  border-radius: var(--radius16);
+}
+
+.me-info {
+  flex: 1;
+}
+
+.me-info h1{
+  font-size: var(--space32);
+  margin-bottom: var(--space8);
+}
+
+.me-info .subtitle{
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: var(--space16)
+}
+
+.me-info p{
+  line-height: 1.6;
+}
+
+.key-focus{
+  margin-top: var(--space24);
+}
+
+.key-focus h3{
+  font-size: 1.1rem;
+  margin-bottom: var(--space8);
+}
+
+.key-focus ul{
+  padding-left: var(--space20);
+}
+
+.key-focus li{
+  margin-bottom: var(--space4);
+  line-height: 1.5;
+}
+
+blockquote.motto {
+  margin-top: var(--space24);
+  padding: var(--space16) var(--space20);
+  background-color: var(--text);
+  color: var(--objects);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius8);
+}
+
+blockquote.motto p{
+  font-style: italic;
+  font-size: 1.05rem;
+  margin-bottom: var(--space4);
+}
+
+blockquote.motto cite{
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-style: normal;
+}
+
+/*footer*/
+footer {
+  margin-top: auto;
+  background-color: var(--primary_color);
+  padding: var(--space24) 0;
+  border-top: 1px solid var(--accent);
+  color: var(--objects);
+  font-size: 0.9rem;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
