@@ -14,7 +14,8 @@
 
 /*spacing*/
 --space4: 0.25rem;           
---space8: 0.5rem;           
+--space8: 0.5rem;
+--space12: 0.75rem;           
 --space16: 1rem;
 --space20: 1.25rem;             
 --space24: 1.5rem;            
@@ -78,6 +79,10 @@ body{
 main {
   padding: var(--space32) 0;
   flex: 1;
+}
+
+.italic-text{
+  font-style: italic;
 }
 
 /*header*/
@@ -183,6 +188,107 @@ blockquote.motto cite{
   font-size: 0.85rem;
   opacity: 0.8;
   font-style: normal;
+}
+
+/*сv.html prop*/
+.cv-container{
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: var(--space4);
+  background-color: var(--objects);
+  border-radius: var(--radius16);
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.cv-sidebar{
+  background-color: var(--primary_color);
+  color:var(--objects);
+  padding: var(--space32) var(--space20);
+}
+
+.cv-photo{
+  width:100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: var(--radius16);
+  display: block;
+  margin: 0 auto var(--space20);
+}
+
+.cv-sidebar h2{
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin: var(--space20) 0 var(--space12);
+  border-bottom: 1px solid var(--text);
+  padding-bottom: var(--space4);
+}
+
+.cv-contacts address{
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.cv-contacts a{
+  color: var(--objects);
+  text-decoration: underline;
+}
+
+.cv-contacts a:hover{
+  color: var(--accent);
+}
+
+.cv-info{
+  background-color: var(--background);
+  padding: var(--space32);
+}
+
+.cv-block{
+  margin-bottom: var(--space24);
+}
+
+.cv-block h2{
+  color: var(--primary_color);
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: var(--space4);
+  margin-bottom: var(--space12);
+}
+
+.cv-vzdel{
+  margin-bottom: var(--space16);
+}
+
+.cv-vzdel h3{
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: var(--space4);
+}
+
+.cv-uni{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space8);
+}
+
+.skills-list{
+  list-style: none;
+  padding-left:0;
+}
+
+.skills-list li{
+  margin-bottom: var(--space8);
+  line-height:1.5;
+  padding-left: var(--space16);
+  position: relative;
+}
+
+.skills-list li::before{
+  content: "•";
+  color:var(--accent);
+  font-weight: bold;
+  position: absolute;
+  left:0;
 }
 
 /*footer*/
