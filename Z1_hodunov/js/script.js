@@ -110,27 +110,54 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function updateUI() {
-            pointSelect.innerHTML = '<option value="" disabled selected>-- Vyberte miesto --</option><option value="home">Môj domov (Bydlisko)</option>';
-
+            const defaultOptions = '<option value="" disabled selected>-- Vyberte miesto --</option><option value="home">Môj domov (Bydlisko)</option><option value="school">FEI STU Bratislava</option>';
+            
+            if (pointSelect) pointSelect.innerHTML = defaultOptions;
+            if (destinationSelect) destinationSelect.innerHTML = defaultOptions;
+    
             customMarkers.forEach(marker => map.removeLayer(marker));
             customMarkers = [];
-
-            if (customPoints.length === 0) {
-                emptyState.style.display = "block";
-            } else {
-                emptyState.style.display = "none";
+    
+            if (emptyState) {
+                if (customPoints.length === 0) {
+                    emptyState.style.display = "block";
+                } else {
+                    emptyState.style.display = "none";
+                }
             }
-
+    
             customPoints.forEach((pt, index) => {
-                const option = document.createElement("option");
-                option.value = index;
-                option.textContent = pt.name;
-                pointSelect.appendChild(option);
-
-                const marker = L.marker([pt.lat, pt.lng])
-                    .addTo(map)
-                    .bindPopup(`<b>${pt.name}</b><br><span style="color: red; cursor: pointer;" onclick="deletePoint(${index})"> Vymazať toto miesto</span>`);
-                
+                if (pointSelect) {
+                    const opt1 = document.createElement("option");
+                    opt1.value = "custom_" + index;
+                    opt1.textContent = pt.name;
+                    pointSelect.appendChild(opt1);
+                }
+    
+                if (destinationSelect) {
+                    const opt2 = document.createElement("option");
+                    opt2.value = "custom_" + index;
+                    opt2.textContent = pt.name;
+                    destinationSelect.appendChild(opt2);
+                }
+                const marker = L.marker([pt.lat, pt.lng]).addTo(map);
+                marker.bindPopup(`<b>${pt.name}</b><br><span class="delete-btn" style="color: red; cursor: pointer;">Vymazať toto miesto</span>`);
+            
+                marker.on('popupopen', function() {
+                    const deleteBtn = marker.getPopup().getElement().querySelector('.delete-btn');
+                    if (deleteBtn) {
+                        deleteBtn.onclick = function() {
+                            customPoints.splice(index, 1);
+                            localStorage.setItem("customPoints", JSON.stringify(customPoints));
+                            if (routePolyline) { 
+                                map.removeLayer(routePolyline); 
+                                routePolyline = null; 
+                            }
+                            if (resultBox) resultBox.style.display = "none";
+                            updateUI();
+                        };
+                    }
+                });
                 customMarkers.push(marker);
             });
         }
@@ -163,45 +190,55 @@ document.addEventListener("DOMContentLoaded", function() {
             return earthRadiusKm * c;
         }
 
-        calculateBtn.addEventListener("click", function() {
-            const selectedValue = pointSelect.value;
-            if (selectedValue === "") {
-                alert("Prosím, vyberte najskôr bod zo zoznamu.");
-                return;
+        function getCoordByValue(val) {
+            if (val === "home") return homeCoords;
+            if (val === "school") return schoolCoords;
+            if (val && val.startsWith("custom_")) {
+                const idx = parseInt(val.replace("custom_", ""));
+                return customPoints[idx];
             }
-
-            let startCoord;
-            let startName;
-
-            if (selectedValue === "home") {
-                startCoord = homeCoords;
-                startName = "Môj domov";
-            } else {
-                const index = parseInt(selectedValue);
-                startCoord = customPoints[index];
-                startName = startCoord.name;
-            }
-
-            const endCoord = schoolCoords;
-            const endName = "FEI STU";
-
-            const distance = calculateHaversineDistance(startCoord.lat, startCoord.lng, endCoord.lat, endCoord.lng);
-
-            resultBox.style.display = "block";
-            resultBox.innerHTML = `Vzdialenosť medzi <b>${startName}</b> a <b>${endName}</b> je <b>${distance.toFixed(2)} km</b>.`;
-
-            if (routePolyline) {
-                map.removeLayer(routePolyline);
-            }
-
-            routePolyline = L.polyline([
-                [startCoord.lat, startCoord.lng],
-                [endCoord.lat, endCoord.lng]
-            ], { color: '#2563eb', weight: 4, opacity: 0.8 }).addTo(map);
-
-            map.fitBounds(routePolyline.getBounds(), { padding: [50, 50] });
-        });
-
+            return null;
+        }
+    
+        if (calculateBtn) {
+            calculateBtn.addEventListener("click", function() {
+                const startVal = pointSelect ? pointSelect.value : "";
+                const endVal = destinationSelect ? destinationSelect.value : "";
+    
+                if (!startVal || !endVal) {
+                    alert("Prosím, vyberte štart aj cieľ.");
+                    return;
+                }
+    
+                if (startVal === endVal) {
+                    alert("Štart a cieľ nemôžu byť rovnaké.");
+                    return;
+                }
+    
+                const startCoord = getCoordByValue(startVal);
+                const endCoord = getCoordByValue(endVal);
+    
+                if (!startCoord || !endCoord) return;
+    
+                const distance = calculateHaversineDistance(startCoord.lat, startCoord.lng, endCoord.lat, endCoord.lng);
+    
+                if (resultBox) {
+                    resultBox.style.display = "block";
+                    resultBox.innerHTML = `Vzdialenosť medzi vybranými bodmi je <b>${distance.toFixed(2)} km</b>.`;
+                }
+    
+                if (routePolyline) {
+                    map.removeLayer(routePolyline);
+                }
+    
+                routePolyline = L.polyline([
+                    [startCoord.lat, startCoord.lng],
+                    [endCoord.lat, endCoord.lng]
+                ], { color: '#2563eb', weight: 4, opacity: 0.8 }).addTo(map);
+    
+                map.fitBounds(routePolyline.getBounds(), { padding: [50, 50] });
+            });
+        }
         updateUI();
     }
 });
