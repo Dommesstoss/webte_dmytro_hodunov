@@ -139,7 +139,7 @@ nav a.active {
   margin-bottom: var(--space8);
 }
 
-.me-info .subtitle{
+ .subtitle{
   color: var(--accent);
   font-weight: 700;
   font-size: 1.1rem;
@@ -289,6 +289,117 @@ blockquote.motto cite{
   font-weight: bold;
   position: absolute;
   left:0;
+}
+
+
+/*workplace*/
+
+.interactive-container {
+  position: relative;
+  max-width: 1000px;
+  margin: var(--space24) auto;
+  border-radius: var(--radius16);
+  overflow: hidden;
+}
+
+.workspace-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hotspot {
+  position: absolute;
+  z-index: 10;
+}
+
+.hotspot-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background-color: var(--secondary_color);
+  border: 3px solid var(--objects);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+
+.hotspot-btn::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--accent);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.hotspot-btn:hover,
+.hotspot-btn:focus {
+  transform: scale(1.25);
+  background-color: var(--accent);
+}
+
+.hotspot-tooltip {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 220px;
+  padding: var(--space12) var(--space16);
+  background-color: var(--primary_color);
+  color: var(--objects);
+  border-radius: var(--radius8);
+  font-size: 0.85rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  text-align: left;
+}
+
+.hotspot-tooltip h3 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: var(--space4);
+}
+
+.hotspot-tooltip p {
+  line-height: 1.4;
+  color: #e2e8f0;
+}
+
+.hotspot-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--primary_color) transparent transparent transparent;
+}
+
+.hotspot:hover .hotspot-tooltip,
+.hotspot:focus-within .hotspot-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 /*footer*/
