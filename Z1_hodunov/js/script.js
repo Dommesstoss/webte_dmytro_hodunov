@@ -1,5 +1,71 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    const scheduleTable = document.querySelector(".schedule-grid-table");
+    if (scheduleTable) {
+        const SEMESTER_START = new Date("2026-09-14");
+        const SEMESTER_END = new Date("2026-12-18");
+
+        const now = new Date();
+        const totalDuration = SEMESTER_END - SEMESTER_START;
+        const elapsed = now - SEMESTER_START;
+        
+        let percent = (elapsed / totalDuration) * 100;
+        if (percent < 0) percent = 0;
+        if (percent > 100) percent = 100;
+
+        const percentEl = document.getElementById("semester-percent");
+        const fillEl = document.getElementById("semester-progress-fill");
+        if (percentEl && fillEl) {
+            percentEl.textContent = percent.toFixed(1) + "%";
+            fillEl.style.width = percent.toFixed(1) + "%";
+        }
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const slots = document.querySelectorAll(".schedule-grid-table .slot");
+        const emptyMsg = document.getElementById("filter-empty-message");
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                filterButtons.forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+
+                const filterType = this.getAttribute("data-filter");
+                let visibleCount = 0;
+
+                slots.forEach(slot => {
+                    const type = slot.getAttribute("data-type");
+                    
+                    if (filterType === "all" || type === filterType) {
+                        slot.style.opacity = "1";
+                        slot.style.pointerEvents = "auto";
+                        slot.style.transform = "scale(1)";
+                        visibleCount++;
+                    } else {
+                        slot.style.opacity = "0.15"; 
+                        slot.style.pointerEvents = "none";
+                        slot.style.transform = "scale(0.98)";
+                    }
+                });
+
+                if (emptyMsg) {
+                    emptyMsg.style.display = (visibleCount === 0) ? "block" : "none";
+                }
+            });
+        });
+
+        const statusBox = document.getElementById("current-class-status");
+        if (statusBox) {
+            const currentDay = now.getDay();
+            if (currentDay >= 1 && currentDay <= 5) {
+                statusBox.textContent = `Dnes prebieha výučba podľa aktuálneho dňa.`;
+            } else {
+                statusBox.textContent = `Dnes je víkend, žiadna výučba neprebieha. Najbližšia hodina bude v pondelok o 08:00.`;
+            }
+        }
+    }
+
+
+
     const mapElement = document.getElementById("map");
     if(mapElement){
         const map = L.map("map").setView([48.151965, 17.072995], 13);

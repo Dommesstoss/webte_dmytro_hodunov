@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="sk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Workplace | Dmytro Hodunov</title>
+
+        <link rel="icon" href="../favicon128.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">Profil</a></li>
+                        <li><a href="cv.html">CV</a></li>
+                        <li><a href="workspace.html">Workplace</a></li>
+                        <li><a href="schedule.html" class="active">Schedule</a></li>
+                        <li><a href="map.html">Map</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <h1>Rozvrh hodín</h1>
+                <p class="subtitle">Môj študijný rozvrh na FEI STU Bratislava.</p>
+
+                <div class="schedule-filters">
+                    <button class="filter-btn active" data-filter="all">Všetko</button>
+                    <button class="filter-btn" data-filter="lecture">Prednášky</button>
+                    <button class="filter-btn" data-filter="exercise">Cvičenia</button>
+                    <button class="filter-btn" data-filter="sport">Šport</button>
+                </div>
+
+                <div id="filter-empty-message" class="empty-state" style="display: none;">
+                    Pre zvolený filter nie sú k dispozícii žiadne položky.
+                </div>
+
+                <div id="current-class-status" class="status-box">
+                    Načítavam stav výučby...
+                </div>
+
+                <div class="table-responsive">
+                    <table class="schedule-grid-table">
+                        <thead>
+                            <tr>
+                                <th>Deň / Čas</th>
+                                <th>8.00-8.50</th>
+                                <th>9.00-9.50</th>
+                                <th>10.00-10.50</th>
+                                <th>11.00-11.50</th>
+                                <th>12.00-12.50</th>
+                                <th>13.00-13.50</th>
+                                <th>14.00-14.50</th>
+                                <th>15.00-15.50</th>
+                                <th>16.00-16.50</th>
+                                <th>17.00-17.50</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr data-day-index="1">
+                                <td class="day-col">Po</td>
+                                <td class="free-slot"></td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Operačné systémy<br><small>cpu-i | M. Jókay</small></td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Webové technológie 1<br><small>c137b | K. Žáková</small></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Mikropočítače a ich prog.<br><small>de300 | P. Kubinec</small></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Lineárna algebra 2<br><small>cd300 | J. Šiagiová</small></td>
+                                <td class="free-slot"></td>
+                            </tr>
+
+                            <tr data-day-index="2">
+                                <td class="day-col">Ut</td>
+                                <td colspan="2" class="free-slot"></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Webové technológie 1<br><small>cd150 | K. Žáková</small></td>
+                                <td class="free-slot"></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Matematická štatistika<br><small>bc150 | J. Kalická</small></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Programovacie techniky<br><small>de300 | M. Drozda</small></td>
+                                <td class="free-slot"></td>
+                            </tr>
+
+                            <tr data-day-index="3">
+                                <td class="day-col">St</td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Operačné systémy<br><small>cd300 | M. Jókay</small></td>
+                                <td class="free-slot"></td>
+                                <td colspan="2" class="slot sport" data-type="sport">Telesná kultúra 3<br><small>ŠIP | M. Jeleň</small></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Webové technológie 1<br><small>cd150 | K. Žáková</small></td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Matematická štatistika<br><small>c433 | D. Pancza</small></td>
+                                <td class="free-slot"></td>
+                            </tr>
+
+                            <tr data-day-index="4">
+                                <td class="day-col">Št</td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Programovacie techniky<br><small>cd300 | P. Marák</small></td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Počítačové siete<br><small>b619 | J. Londák</small></td>
+                                <td class="free-slot"></td>
+                                <td colspan="2" class="slot lecture" data-type="lecture">Počítačové siete<br><small>cd300 | R. Vargic</small></td>
+                                <td colspan="3" class="free-slot"></td>
+                            </tr>
+
+                            <tr data-day-index="5">
+                                <td class="day-col">Pi</td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Mikropočítače a ich prog.<br><small>e133 | P. Kubinec</small></td>
+                                <td colspan="2" class="slot exercise" data-type="exercise">Lineárna algebra 2<br><small>ab35 | P. Viceník</small></td>
+                                <td colspan="6" class="free-slot"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="semester-progress-container">
+                    <div class="progress-info">
+                        <span>Uplynutý semester:</span>
+                        <span id="semester-percent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="semester-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="container footer-container">
+                <p>2026 Dmytro Hodunov.</p>
+                <p>FEI STU Bratislava | Aplikovana informatika</p>
+            </div> 
+        </footer>
+
+        <script src="../js/script.js"></script>
+    </body>
+</html>
