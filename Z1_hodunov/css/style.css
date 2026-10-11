@@ -162,7 +162,7 @@ nav a.active {
   margin-top: var(--space24);
 }
 
-.key-focus h3{
+.key-focus h2{
   font-size: 1.1rem;
   margin-bottom: var(--space8);
 }
@@ -263,11 +263,11 @@ blockquote.motto cite{
   margin-bottom: var(--space12);
 }
 
-.cv-vzdel{
+.cv-study{
   margin-bottom: var(--space16);
 }
 
-.cv-vzdel h3{
+.cv-study h3{
   font-size: 1.1rem;
   color: var(--text);
   margin-bottom: var(--space4);
@@ -381,7 +381,7 @@ blockquote.motto cite{
   text-align: left;
 }
 
-.hotspot-tooltip h3 {
+.hotspot-tooltip h2 {
   color: var(--accent);
   font-size: 0.95rem;
   margin-bottom: var(--space4);
