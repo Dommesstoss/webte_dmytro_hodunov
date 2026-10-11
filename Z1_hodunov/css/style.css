@@ -292,7 +292,7 @@ blockquote.motto cite{
 }
 
 
-/*workplace*/
+/*workplace prop*/
 
 .interactive-container {
   position: relative;
@@ -365,7 +365,7 @@ blockquote.motto cite{
   background-color: var(--primary_color);
   color: var(--objects);
   border-radius: var(--radius8);
-  font-size: 0.85rem;
+  font-size: 0.85rem; 
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
@@ -381,7 +381,7 @@ blockquote.motto cite{
 
 .hotspot-tooltip p {
   line-height: 1.4;
-  color: #e2e8f0;
+  color: var(--objects);
 }
 
 .hotspot-tooltip::after {
@@ -400,6 +400,111 @@ blockquote.motto cite{
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+}
+
+/*map prop*/
+.controls-section {
+  background-color: var(--objects);
+  padding: var(--space24);
+  border-radius: var(--radius16);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space16);
+}
+
+.controls-section h2 {
+  font-size: 1.3rem;
+  color: var(--primary_color);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: var(--space4);
+  margin-bottom: var(--space4);
+}
+
+.empty-state {
+  background-color: var(--background);
+  color: var(--text-muted);
+  padding: var(--space16);
+  border-radius: var(--radius8);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.route-planner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space16);
+  align-items: flex-end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space8);
+  flex: 1;
+  min-width: 200px;
+}
+
+.control-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.control-group select {
+  padding: var(--space8) var(--space12);
+  border-radius: var(--radius8);
+  border: 1px solid var(--border);
+  background-color: var(--objects);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+#calculate-btn {
+  padding: var(--space8) var(--space24);
+  background-color: var(--secondary_color);
+  color: var(--objects);
+  border: none;
+  border-radius: var(--radius8);
+  cursor: pointer;
+  font-weight: 700;
+  height: 41px;
+  transition: background-color 0.2s ease;
+}
+
+#calculate-btn:hover {
+  background-color: var(--accent);
+}
+
+.result-box {
+  background-color: var(--background);
+  color: var(--primary_color);
+  padding: var(--space16);
+  border-radius: var(--radius8);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+
+.map-section {
+  background-color: var(--objects);
+  padding: var(--space24);
+  border-radius: var(--radius16);
+  border: 1px solid var(--border);
+}
+
+.map-section h2 {
+  font-size: 1.3rem;
+  color: var(--primary_color);
+  margin-bottom: var(--space16);
+}
+
+#map {
+  height: 450px;
+  width: 100%;
+  border-radius: var(--radius8);
+  border: 1px solid var(--border);
 }
 
 /*footer*/

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Map | Dmytro Hodunov</title>
+
+        <link rel="icon" href="../favicon128.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">Profil</a></li>
+                        <li><a href="cv.html">CV</a></li>
+                        <li><a href="workspace.html">Workplace</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li><a href="map.html" class="active">Map</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <h1>Kde ma nájdete</h1>
+                <p class="subtitle">Interaktívna mapa — odkiaľ dochádzam na štúdium.</p>
+
+                <section class="controls-section">
+                    <h2>Trasy a body záujmu</h2>
+                    
+                    <div id="empty-state" class="empty-state">
+                        Zatiaľ ste nepridali žiadne vlastné body. Kliknite kdekoľvek na mapu, aby ste pridali nové miesto!
+                    </div>
+    
+                    <div class="route-planner">
+                        <div class="control-group">
+                            <label for="point-select">Vyberte bod:</label>
+                            <select id="point-select">
+                                <option value="" disabled selected>-- Vyberte miesto --</option>
+                                <option value="home">Môj domov (Bydlisko)</option>
+                            </select>
+                        </div>
+    
+                        <div class="control-group">
+                            <label for="destination-select">Cieľ:</label>
+                            <select id="destination-select">
+                                <option value="school" selected>FEI STU Bratislava (Škola)</option>
+                            </select>
+                        </div>
+    
+                        <button id="calculate-btn">Vypočítať vzdialenosť</button>
+                    </div>
+    
+                    <div id="result-box" class="result-box" style="display: none;"></div>
+                </section>
+
+                <section class="map-section">
+                    <h2>Mapa</h2>
+                    <div id="map"></div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container footer-container">
+                <p>2026 Dmytro Hodunov. Mapové podklady: <a href="https://www.openstreetmap.org/copyright" target="_blank" style="color: var(--accent);">OpenStreetMap</a> | Knižnica: <a href="https://leafletjs.com/" target="_blank" style="color: var(--accent);">Leaflet</a></p>
+                <p>FEI STU Bratislava | Aplikovana informatika</p>
+            </div> 
+        </footer>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <script src="../js/script.js"></script>
+    </body>
+</html>
