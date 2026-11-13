@@ -1,0 +1,57 @@
+:root {
+    --color-brand: #1d6f8a;
+    --color-accent: #d9480f;
+    --color-muted: #eef3f6;
+    --radius: 0.5rem;
+    --space: 1rem;
+  }
+  
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--space);
+    font-family: system-ui, sans-serif;
+  }
+  
+  .products {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .products li {
+    display: flex;
+    align-items: center;
+    gap: var(--space);
+    padding: 0.5rem var(--space);
+    background: var(--color-muted);
+    border-left: 4px solid var(--color-brand);
+    border-radius: var(--radius);
+  }
+  
+  .products li span:first-child {
+    flex: 1;
+  }
+  
+  button {
+    padding: 0.4rem 0.8rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--color-brand);
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: progress;
+  }
+  
+  .cart {
+    margin-top: 2rem;
+    padding: var(--space);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius);
+  }

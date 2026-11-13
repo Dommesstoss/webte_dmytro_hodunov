@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program kina Hviezda</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Подключаем jQuery перед нашим скриптом (оба с defer выполнятся строго по порядку) -->
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Program kina Hviezda</h1>
+
+    <!-- Текстовое поле для статуса загрузки программы или ошибок -->
+    <p id="status">Program sa načítava…</p>
+    <p>
+      <!-- Кнопка принудительного обновления программы из сети/файла -->
+      <button id="refresh" type="button">Aktualizovať program</button>
+      <!-- Кнопка очистки сохраненных в браузере данных -->
+      <button id="clear" type="button">Vymazať uložené dáta</button>
+    </p>
+
+    <!-- Навигация: вкладки с днями недели -->
+    <nav id="day-tabs" class="day-tabs" aria-label="Dni v týždni"></nav>
+    <!-- Контейнер для вывода расписания сеансов выбранного дня -->
+    <section id="schedule" class="schedule"></section>
+  </main>
+</body>
+</html>

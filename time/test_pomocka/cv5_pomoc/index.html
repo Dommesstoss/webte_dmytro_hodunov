@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malý obchod</title>
+  <!-- Подключаем стили оформления магазина -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Подключаем JS с атрибутом defer: он загрузится параллельно, но запустится только после готовности DOM -->
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Malý obchod</h1>
+
+    <!-- Текстовое поле для статуса загрузки ("Načítavam...", количество или ошибка) -->
+    <p id="status">Produkty sa načítavajú…</p>
+    <!-- Кнопка повторной загрузки товаров со "сервера" -->
+    <button id="reload" type="button">Načítať produkty</button>
+
+    <!-- Список для отображения товаров -->
+    <ul id="products" class="products">
+    </ul>
+
+    <!-- Блок корзины покупок -->
+    <section class="cart">
+      <h2>Košík</h2>
+      <p>Položiek: <span id="cart-count">0</span>, spolu <span id="cart-total">0.00</span> €</p>
+      <!-- Кнопка включения/выключения скидки 10% -->
+      <button id="discount" type="button">Zľava 10 %</button>
+    </section>
+  </main>
+</body>
+</html>

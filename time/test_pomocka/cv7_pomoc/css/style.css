@@ -1,0 +1,17 @@
+:root {
+    --color-brand: #1d6f8a;
+  }
+  
+  button {
+    padding: 0.4rem 0.8rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--color-brand);
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: progress;
+  }

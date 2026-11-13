@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <title>Kino Hviezda | Program na týždeň</title>
+  <style>
+    body { margin: 0; background: #1b1023; color: #f5e9ff; font-family: Georgia, serif; }
+    h2 { color: #ffcc33; text-transform: uppercase; letter-spacing: 0.2em; }
+    a { color: #ff7ac8; }
+    .film { display: flex; gap: 1em; }
+  </style>
+  <script>
+    console.log("Kino Hviezda: skript stránky sa spustil");
+  </script>
+</head>
+<body>
+  <header class="hlavicka">
+    <img src="https://stat.kino-hviezda.example/pixel.gif" alt="" width="1" height="1"
+         onerror="console.warn('Kino Hviezda: meranie návštevnosti nedostupné')">
+    <h1>Kino Hviezda</h1>
+    <nav><a href="#">Program</a> | <a href="#">Cenník</a> | <a href="#">Kontakt</a></nav>
+  </header>
+
+  <main id="program">
+
+    <section class="den">
+      <h2>
+        Pondelok
+        <small>2. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">17:30</span>
+          <a class="nazov" href="filmy/robot-ferko.html">
+            Robot Ferko
+            zachraňuje svet
+          </a>
+          <span class="sala">Sála 2</span>
+          <span class="cena">5,90&nbsp;€</span>
+        </li>
+        <li class="film">
+          <span class="cas">20:00</span>
+          <a class="nazov" href="filmy/posledny-vlak.html">Posledný vlak do Žiliny</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">7,50 €</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="den">
+      <h2>
+        Utorok
+        <small>3. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">18:00</span>
+          <a class="nazov" href="filmy/ticha-dolina.html">Tichá dolina</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">7,50 €</span>
+        </li>
+        <li class="film">
+          <span class="cas">20:30</span>
+          <a class="nazov" href="filmy/filmovy-klub.html">Filmový klub: Obchod na korze</a>
+          <span class="sala">Malá sála</span>
+          <span class="poznamka">len pre členov klubu</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="den">
+      <h2>
+        Streda
+        <small>4. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">16:00</span>
+          <a class="nazov" href="filmy/robot-ferko.html">
+            Robot Ferko
+            zachraňuje svet
+          </a>
+          <span class="sala">Sála 2</span>
+          <span class="cena">5,90&nbsp;€</span>
+        </li>
+        <li class="film">
+          <span class="cas">19:30</span>
+          <a class="nazov" href="filmy/hviezdny-prach.html">Hviezdny prach</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">9 €</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="den">
+      <h2>
+        Štvrtok
+        <small>5. 11.</small>
+      </h2>
+      <p class="bez-programu">Technická prestávka – kino je zatvorené.</p>
+    </section>
+
+    <section class="den">
+      <h2>
+        Piatok
+        <small>6. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">17:00</span>
+          <a class="nazov" href="filmy/navrat-na-devin.html">Návrat na Devín</a>
+          <span class="sala">Sála 2</span>
+          <span class="cena">7,50 €</span>
+        </li>
+        <li class="film">
+          <span class="cas">19:30</span>
+          <a class="nazov" href="filmy/hviezdny-prach.html">Hviezdny prach</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">9 €</span>
+        </li>
+        <li class="film">
+          <span class="cas">22:00</span>
+          <a class="nazov" href="filmy/noc-v-petrzalke.html">Noc v Petržalke</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">7,50 €</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="den">
+      <h2>
+        Sobota
+        <small>7. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">10:00</span>
+          <a class="nazov" href="filmy/robot-ferko.html">
+            Robot Ferko
+            zachraňuje svet
+          </a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">4,50 €</span>
+        </li>
+        <li class="film">
+          <span class="cas">20:00</span>
+          <a class="nazov" href="filmy/noc-v-petrzalke.html">Noc v Petržalke</a>
+          <span class="sala">Sála 1</span>
+          <span class="cena">7,50 €</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="den">
+      <h2>
+        Nedeľa
+        <small>8. 11.</small>
+      </h2>
+      <ul class="filmy">
+        <li class="film">
+          <span class="cas">15:00</span>
+          <a class="nazov" href="filmy/ticha-dolina.html">Tichá dolina</a>
+          <span class="sala">Sála 2</span>
+          <span class="cena">6 €</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Kino Hviezda, Hviezdoslavova 12, Bratislava · Pokladňa otvorená hodinu pred prvým predstavením.</p>
+  </footer>
+</body>
+</html>
