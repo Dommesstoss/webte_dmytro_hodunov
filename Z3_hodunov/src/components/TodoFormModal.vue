@@ -10,10 +10,18 @@
         todo:{
             type: Object,
             default: null
+        },
+        initialDate:{
+            type: String,
+            default: ''
+        },
+        saving:{
+          type: Boolean,
+          default: false
         }
     })
 
-    const emit = defineEmits(['close', 'save'])
+    const emit = defineEmits(['close', 'save', 'toggle-done', 'delete'])
 
     const title = ref('')
     const description = ref('')
@@ -37,11 +45,18 @@
             endDate.value = toLocalInputFormat(props.todo.endDate)
         }
         else{
-            title.value = ref('')
-            description.value = ref('')
-            priority.value = ref('medium')
-            startDate.value = ref('')
-            endDate.value = ref('')
+            title.value = ''
+            description.value = ''
+            priority.value = 'medium'
+            if (props.initialDate) {
+                const normalized = props.initialDate.includes('T')
+                    ? props.initialDate
+                    : `${props.initialDate}T09:00`
+                startDate.value = toLocalInputFormat(normalized)
+            } else {
+                startDate.value = ''
+            }
+            endDate.value = ''
         }
     })
 
@@ -58,15 +73,31 @@
             newErrors.description = 'Popis môže mať maximálne 1000 znakov.'
         }
 
-        if(startDate.value && endDate.value){
-            if(new Date(startDate.value) > new Date(endDate.value)){
-                newErrors.endDate='Dátum konca nemôže byť skôr ako dátum začiatku.'
-            }
+        if(!startDate.value){
+            newErrors.startDate = 'Dátum a čas začiatku je povinný.'
+        }
+
+        if(!endDate.value){
+            newErrors.endDate = 'Dátum a čas ukončenia je povinný.'
+        } else if(startDate.value && new Date(startDate.value) > new Date(endDate.value)){
+            newErrors.endDate = 'Dátum konca nemôže byť skôr ako dátum začiatku.'
         }
 
         errors.value = newErrors
         return Object.keys(newErrors).length === 0
 
+    }
+    const handleToggleDone = () => {
+      if (!props.todo) return
+      emit('toggle-done', props.todo)
+      emit('close')
+    }
+
+    const handleDelete = () => {
+      if (!props.todo) return
+      if (!confirm('Naozaj chcete vymazať túto úlohu?')) return
+      emit('delete', props.todo.id)
+      emit('close')
     }
 
     const handleSubmit = () => {
@@ -142,11 +173,17 @@
   
                 <div class="row g-2">
                   <div class="col-md-6">
-                    <label class="form-label">Začiatok</label>
-                    <input v-model="startDate" type="datetime-local" class="form-control" />
+                    <label class="form-label">Začiatok *</label>
+                    <input
+                      v-model="startDate"
+                      type="datetime-local"
+                      class="form-control"
+                      :class="{ 'is-invalid': errors.startDate }"
+                    />
+                    <div v-if="errors.startDate" class="invalid-feedback">{{ errors.startDate }}</div>
                   </div>
                   <div class="col-md-6">
-                    <label class="form-label">Koniec (termín)</label>
+                    <label class="form-label">Koniec (termín) *</label>
                     <input
                       v-model="endDate"
                       type="datetime-local"
@@ -158,13 +195,36 @@
                 </div>
               </div>
   
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @click="emit('close')">
-                  Zrušiť
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  {{ isEditMode ? 'Uložiť zmeny' : 'Vytvoriť úlohu' }}
-                </button>
+              <div class="modal-footer justify-content-between">
+                <div v-if="isEditMode" class="d-flex gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-sm"
+                    :class="todo.done ? 'btn-outline-warning' : 'btn-outline-success'"
+                    @click="handleToggleDone"
+                  >
+                    <i class="bi" :class="todo.done ? 'bi-arrow-counterclockwise' : 'bi-check-lg'"></i>
+                    {{ todo.done ? 'Vrátiť medzi aktívne' : 'Dokončiť' }}
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm"
+                    @click="handleDelete"
+                  >
+                    <i class="bi bi-trash"></i> Vymazať
+                  </button>
+                </div>
+                <div v-else></div>
+
+                <div class="d-flex gap-2">
+                  <button type="button" class="btn btn-secondary" @click="emit('close')">
+                    Zrušiť
+                  </button>
+                  <button type="submit" class="btn btn-primary" :disabled="saving">
+                    <span v-if="saving" class="spinner-border spinner-border-sm me-1"></span>
+                    {{ isEditMode ? 'Uložiť zmeny' : 'Vytvoriť úlohu' }}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

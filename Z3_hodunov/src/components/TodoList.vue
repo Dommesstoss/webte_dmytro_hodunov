@@ -102,7 +102,7 @@
         <div
           v-for="todo in filteredTodos"
           :key="todo.id"
-          class="card shadow-sm"
+          class="card todo-card shadow-sm"
           :class="{
             'border-success bg-light opacity-75': todo.done,
             'border-danger': isOverdue(todo)
